@@ -7,22 +7,24 @@ pipeline{
             }
             post{
                 success {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'SUCCESS'
-                        }
-                    }
+                    echo "success"
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'SUCCESS'
+                    //     }
+                    // }
                 }
                 failure {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'FAILURE'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'FAILURE'
+                    //     }
+                    // }
+                    echo "success"
                 }
             }
         }
@@ -31,23 +33,25 @@ pipeline{
                 sh 'whoami'
             }
             post{
-                success {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'SUCCESS'
-                        }
-                    }
+                // success {
+                //     script {
+                //         githubStatus {
+                //             context: 'Test',
+                //             description: 'Tests passed'
+                //             state: 'SUCCESS'
+                //         }
+                //     }
+                echo "success"
                 }
                 failure {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'FAILURE'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'FAILURE'
+                    //     }
+                    // }
+                    echo "success"
                 }
             }
         }
@@ -57,22 +61,24 @@ pipeline{
             }
             post{
                 success {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'SUCCESS'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'SUCCESS'
+                    //     }
+                    // }
+                    echo "success"
                 }
                 failure {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'FAILURE'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'FAILURE'
+                    //     }
+                    // }
+                    echo "success"
                 }
             }
         }
@@ -82,22 +88,24 @@ pipeline{
             }
             post{
                 success {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'SUCCESS'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'SUCCESS'
+                    //     }
+                    // }
+                    echo "success"
                 }
                 failure {
-                    script {
-                        githubStatus {
-                            context: 'Test',
-                            description: 'Tests passed'
-                            state: 'FAILURE'
-                        }
-                    }
+                    // script {
+                    //     githubStatus {
+                    //         context: 'Test',
+                    //         description: 'Tests passed'
+                    //         state: 'FAILURE'
+                    //     }
+                    // }
+                    echo "success"
                 }
             }
         }
