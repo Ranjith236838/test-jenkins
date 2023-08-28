@@ -1,22 +1,104 @@
-pipeline {
+pipeline{
     agent any
-    // triggers {
-    //     githubPush()
-    //   }
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
+    stages{
+        stage('Clean & Checkout'){
+            steps{
+                sh 'echo "Hello World"'
+            }
+            post{
+                success {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'SUCCESS'
+                        }
+                    }
+                }
+                failure {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'FAILURE'
+                        }
+                    }
+                }
             }
         }
-                stage('Testing') {
-            steps {
-                echo 'Hello World'
+        stage('Title Check'){
+            steps{
+                sh 'whoami'
+            }
+            post{
+                success {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'SUCCESS'
+                        }
+                    }
+                }
+                failure {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'FAILURE'
+                        }
+                    }
+                }
             }
         }
-                stage('Deploying') {
-            steps {
-                echo 'Hello World'
+        stage('CodeQL Scan'){
+            steps{
+                sh 'whoami'
+            }
+            post{
+                success {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'SUCCESS'
+                        }
+                    }
+                }
+                failure {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'FAILURE'
+                        }
+                    }
+                }
+            }
+        }
+        stage('SonarQube'){
+            steps{
+                sh 'whoami'
+            }
+            post{
+                success {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'SUCCESS'
+                        }
+                    }
+                }
+                failure {
+                    script {
+                        githubStatus {
+                            context: 'Test',
+                            description: 'Tests passed'
+                            state: 'FAILURE'
+                        }
+                    }
+                }
             }
         }
     }
