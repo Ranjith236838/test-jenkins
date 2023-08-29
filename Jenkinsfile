@@ -4,6 +4,7 @@ pipeline{
         stage('Test'){
             steps{
                 sh 'whoami'
+                cleanWs()
             }
             post{
                 success{
