@@ -1,19 +1,36 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Test'){
-            steps{
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
                 sh 'whoami'
-                cleanWs()
             }
-            post{
-                success{
-                    echo "Hello World"
+            
+            post {
+                success {
+                    githubChecks([description: 'Build passed', context: 'build'])
                 }
-                failure{
-                    echo "Failure"
+                failure {
+                    githubChecks([description: 'Build failed', context: 'build', conclusion: 'failure'])
                 }
             }
         }
+        
+        stage('Test') {
+            steps {
+                // Your test steps here
+                cleanWs()
+            }
+            
+            post {
+                always {
+                    githubChecks([description: 'Tests completed', context: 'test'])
+                }
+            }
+        }
+        
+        // Add more stages
     }
 }
