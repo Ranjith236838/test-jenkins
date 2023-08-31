@@ -6,7 +6,7 @@ pipeline{
                 sh 'whoami'
                 echo "${ghprbPullLink}"
 
-                githubNotify status: 'SUCCESS', message: 'Build was successful', url: "${ghprbPullLink}"
+                githubNotify description: "Build is successfull", status: 'SUCCESS', message: 'Build was successful', sha: "${sha1}"
             }
             post{
                 success{
