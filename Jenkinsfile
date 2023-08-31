@@ -35,5 +35,18 @@ pipeline{
                 }
             }
         }
+        stage('SonarScan'){
+            steps{
+                sh 'whoami'
+            }
+            post{
+                success{
+                    setBuildStatus("SonarScan succeeded", "SUCCESS")
+                }
+                failure{
+                    setBuildStatus("SonarScan failed", "FAIL")
+                }
+            }
+        }
     }
 }
