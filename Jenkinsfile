@@ -21,8 +21,7 @@ pipeline{
 
                 //githubNotify description: "Build is successfull", status: 'SUCCESS', context: 'Build Status', credentialsId: "github-pat", repo: "https://github.com/Ranjith236838/test-jenkins.git", sha: "${sha1}"         
                 githubNotify context: 'Final Test', credentialsId: 'github-pat',
-    description: 'This is an example', repo: 'https://github.com/Ranjith236838/test-jenkins', sha: '${sha1}'
-    , status: 'SUCCESS', targetUrl: 'https://my-jenkins-instance.com'
+    description: 'This is an example', repo: 'https://github.com/Ranjith236838/test-jenkins', sha: '${sha1}', status: 'SUCCESS', targetUrl: 'https://my-jenkins-instance.com'
             }
                     
             post{
