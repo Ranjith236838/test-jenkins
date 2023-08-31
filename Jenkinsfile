@@ -1,8 +1,8 @@
 void setBuildStatus(String message, String state) {
   step([
       $class: "GitHubCommitStatusSetter",
-      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/Ranjith236838/test-jenkins"],
-      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/Ranjith236838/test-jenkins.git"],
+      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "default"],
       errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
       statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
   ]);
