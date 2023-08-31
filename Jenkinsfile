@@ -17,6 +17,7 @@ pipeline{
             steps{
                 sh 'whoami'
                 echo "${ghprbPullLink}"
+                echo "sha: ${sha1}"
 
                 //githubNotify description: "Build is successfull", status: 'SUCCESS', context: 'Build Status', credentialsId: "github-pat", repo: "https://github.com/Ranjith236838/test-jenkins.git", sha: "${sha1}"         
                 
