@@ -4,7 +4,7 @@ pipeline{
         stage('Test'){
             steps{
                 sh 'whoami'
-                echo "${ghprbPullLink}
+                echo "${ghprbPullLink}"
 
                 notifyGithub status: 'SUCCESS', message: 'Build was successful', url: ${ghprbPullLink}
             }
