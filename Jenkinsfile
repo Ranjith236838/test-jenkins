@@ -1,34 +1,22 @@
-pipeline {
+pipeline{
     agent any
+    environment{
+        gitToken = credentials('github-token')
+    }
 
-    stages {
-        stage('Build') {
-            steps {
-                // Your build steps here
-                echo "Hello World"
+    stages{
+        stage('Clean'){
+            steps{
+                script{
+                    cleanWs()
+                    checkout scm
+                }
+            }
+            post{
+                success{
+                    echo "success"
+                }
             }
         }
     }
-
-    post {
-        always {
-            // This post-build section will always run, regardless of the build result
-
-            script {
-                // Notify GitHub about the build result using the GitHub Notifier Plugin
-                currentBuild.resultIsBetterOrEqualTo('SUCCESS') ?
-                        githubNotify(message: 'Build was successful', status: 'SUCCESS') :
-                        githubNotify(message: 'Build failed', status: 'FAILURE')
-            }
-        }
-    }
-}
-
-def githubNotify(def notifyMap) {
-    step([
-        $class: 'GitHubCommitNotifier',
-        statusResult: notifyMap.status,
-        commentBody: notifyMap.message,
-        result: currentBuild.currentResult
-    ])
 }
