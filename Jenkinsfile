@@ -1,4 +1,4 @@
-def updateCommitStatus(context, state, description){
+def updateCommitStatus(body){
     sh '''
         curl -L \
     -X POST \
@@ -6,13 +6,14 @@ def updateCommitStatus(context, state, description){
     -H "Authorization: Bearer ${gitToken}" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     https://api.github.com/repos/Ranjith236838/test-jenkins/statuses/${sha1} \
-    -d "{\"state\":${state},\"target_url\":\"https://example.com/build/status\",\"description\":${description},\"context\":${context}}"
+    -d ${body}
     '''
 }
 
-// def getJson(context, state, description){
-//     def result = "{\"state}"
-// }
+def getJson(context, state, description){
+    def result = "{\"state\":${state},\"target_url\":\"https://example.com/build/status\",\"description\":${description},\"context\":${context}}"
+    return result
+}
 
 pipeline{
     agent any
@@ -31,11 +32,15 @@ pipeline{
             post{
                 success{
                     echo "success"
-                    updateCommitStatus("clean", "success", "Cleaning Succeeded")
+                    body = getJson("clean", "success", "Cleaning Succeeded")
+                    echo "${body}"
+                    updateCommitStatus($body)
                 }
                 failure{
                     echo "failure"
-                    updateCommitStatus("clean", "failure", "Cleaning failed")
+                    body = getJson("clean", "failure", "Cleaning failed")
+                    echo "${body}"
+                    updateCommitStatus($body)
                 }
             }
         }
