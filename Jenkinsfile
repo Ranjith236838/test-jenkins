@@ -10,10 +10,19 @@ pipeline {
             
             post {
                 success {
-                    githubChecks([description: 'Build passed', context: 'build'])
+
+                        githubNotify(
+                            account: 'Ranjith236838', context: 'Final Test', 
+                            credentialsId: 'github-pat', description: 'This is a shorted example',  
+                        repo: 'https://github.com/Ranjith236838/test-jenkins', sha: 'd75c3cc28e755dbecb3dd9fc4f4b58c4c1e8b6c4 ', 
+                        status: 'SUCCESS', targetUrl: 'https://example.com'
+                        
+                        )
+
                 }
                 failure {
-                    githubChecks([description: 'Build failed', context: 'build', conclusion: 'failure'])
+                        echo "failed"
+               //     githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
                 }
             }
         }
@@ -23,12 +32,17 @@ pipeline {
                 // Your test steps here
                 cleanWs()
             }
-            
-            post {
-                always {
-                    githubChecks([description: 'Tests completed', context: 'test'])
-                }
-            }
+            // post {
+            //     success {
+
+            //             githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
+
+            //     }
+            //     failure {
+
+            //         githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
+            //     }
+            // }
         }
         
         // Add more stages
